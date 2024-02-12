@@ -1,18 +1,31 @@
 #include "philo.h"
 
-unsigned long	get_time(void)
-{
-	struct timeval	time;
+#define MAX_THREADS 10
 
-	gettimeofday(&time, NULL);
-	return ((time.tv_sec * (unsigned long)1000) + (time.tv_usec / 1000));
+__attribute__((destructor)) static void destructor()
+{
+	system("leaks -q a.out");
+}
+
+void	*threadFunction(void *arg)
+{
+	printf("Thread number %ld is running.\n", (long)arg);
+	return (NULL);
 }
 
 int	main(void)
 {
-	unsigned long start_time, end_time;
-	start_time = get_time();
-    sleep(1);
-	end_time = get_time();
-	printf("処理にかかった時間: %lu ミリ秒\n", end_time - start_time);
+	pthread_t threads[MAX_THREADS];
+	int ret;
+	long i;
+
+	for (i = 0; i < MAX_THREADS; i++)
+	{
+		ret = pthread_create(&threads[i], NULL, threadFunction, (void *)i);
+		if (ret != 0 || i == 5)
+		{
+			break ;
+		}
+	}
+	return (0);
 }
