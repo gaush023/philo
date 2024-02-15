@@ -6,18 +6,18 @@
 /*   By: sagemura <sagemura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 03:13:38 by sagemura          #+#    #+#             */
-/*   Updated: 2024/02/10 03:19:20 by sagemura         ###   ########.fr       */
+/*   Updated: 2024/02/13 15:45:53 by sagemura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "../../philo.h"
 
-size_t ft_strlen(char *s)
+size_t	ft_strlen(char *s)
 {
-    size_t i;
+	size_t i;
 
-    i = 0;
-    while (s[i] != '\0')
-        i++;
-    return (i);   
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }

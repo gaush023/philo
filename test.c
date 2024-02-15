@@ -1,31 +1,36 @@
-#include "philo.h"
+#include <pthread.h>
+#include <stdio.h>
 
-#define MAX_THREADS 10
+int				counter = 0;
 
-__attribute__((destructor)) static void destructor()
+pthread_mutex_t	mutex = PTHREAD_MUTEX_INITIALIZER;
+
+void	*increment_counter(void *arg)
 {
-	system("leaks -q a.out");
-}
+	int	i;
+	(void)arg;
 
-void	*threadFunction(void *arg)
-{
-	printf("Thread number %ld is running.\n", (long)arg);
-	return (NULL);
-}
-
-int	main(void)
-{
-	pthread_t threads[MAX_THREADS];
-	int ret;
-	long i;
-
-	for (i = 0; i < MAX_THREADS; i++)
+	i = 0;
+	while (i < 10000)
 	{
-		ret = pthread_create(&threads[i], NULL, threadFunction, (void *)i);
-		if (ret != 0 || i == 5)
-		{
-			break ;
-		}
+		pthread_mutex_lock(&mutex);
+		++counter;
+		pthread_mutex_unlock(&mutex);
+		i++;
 	}
+	return NULL;
+}
+
+int main (void)
+{
+	pthread_t	thread1;
+	pthread_t	thread2;
+
+	pthread_create(&thread1, NULL, increment_counter, NULL);
+	pthread_create(&thread2, NULL, increment_counter, NULL);
+	pthread_join(thread1, NULL);
+	pthread_join(thread2, NULL);
+	printf("Counter: %d\n", counter);
+	pthread_mutex_destroy(&mutex);
 	return (0);
 }

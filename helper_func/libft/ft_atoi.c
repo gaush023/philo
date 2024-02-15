@@ -6,18 +6,15 @@
 /*   By: sagemura <sagemura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 02:48:49 by sagemura          #+#    #+#             */
-/*   Updated: 2024/02/10 03:46:48 by sagemura         ###   ########.fr       */
+/*   Updated: 2024/02/15 19:23:57 by sagemura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "../../philo.h"
 
-int	ft_atoi(char *s)
+static long	ft_atoi_helper(char *s)
 {
-	long	i;
-	int		flag;
-	long	length;
-	long	res;
+	int	i;
 
 	i = 0;
 	while (s[i] == ' ')
@@ -26,14 +23,31 @@ int	ft_atoi(char *s)
 		i++;
 	else if (s[i] == '-')
 		return (-1);
-	res = 0;
+	return (i);
+}
+
+static long	ft_length(char *s, int i)
+{
+	while (s[i] != '\0')
+		i++;
+	while (s[i - 1] == ' ')
+		i--;
+	return (i);
+}
+
+int	ft_atoi(char *s)
+{
+	long	i;
+	int		flag;
+	long	length;
+	long	res;
+
+	i = ft_atoi_helper(s);
+	if (i == -1)
+		return (-1);
 	flag = i;
-	length = i;
-	while (s[length] != '\0')
-		length++;
-	while (s[length - 1] == ' ')
-		length--;
-	i = flag;
+	length = ft_length(s, i);
+	res = 0;
 	while (s[i] >= '0' && s[i] <= '9')
 	{
 		res = res * 10 + s[i] - '0';
@@ -49,8 +63,22 @@ int	ft_atoi(char *s)
 
 // int	main(int ar, char **av)
 // {
-// 	if (ar != 2)
+// 	int i;
+
+// 	i = 1;
+// 	if (ar == 0)
 // 		return (-1);
-// 	printf("%d\n", ft_atoi(av[1]));
+// 	while (i < ar)
+// 	{
+// 		printf("%d\n%s\n", ft_atoi(av[i]), av[i]);
+// 		i++;
+// 	}
+// 	i = 1;
+// 	while (i < ar)
+// 	{
+// 		if (ft_atoi(av[i]) == -1)
+// 			return (printf("%d\n%s\n", ft_atoi(av[i]), av[i]));
+// 		i++;
+// 	}
 // 	return (0);
 // }
