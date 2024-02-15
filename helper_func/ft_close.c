@@ -6,7 +6,7 @@
 /*   By: sagemura <sagemura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 03:09:38 by sagemura          #+#    #+#             */
-/*   Updated: 2024/02/15 19:03:53 by sagemura         ###   ########.fr       */
+/*   Updated: 2024/02/15 20:01:53 by sagemura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ void	byebye_mutex(t_vars *vars, enum e_error i)
 {
 	while (vars->mutex_i > 0)
 	{
-		pthread_mutex_destroy(&(vars->forks[i]));
 		--vars->mutex_i;
+		pthread_mutex_destroy(&(vars->forks[vars->mutex_i]));
 	}
 	if (i <= mutex_error2)
 		pthread_mutex_destroy(&(vars->meal));
-	else if (i < mutex_error2)
+	if (i < mutex_error2)
 		pthread_mutex_destroy(&(vars->print));
 }
 
@@ -45,7 +45,7 @@ int	ft_close(t_vars *vars, enum e_error i)
 	}
 	else if (i <= mutex_error)
 	{
-		write(2, "Error: mutex failed4\n", 20);
+		write(2, "Error: mutex failed", 20);
 		delete_malloc(vars, i);
 		byebye_mutex(vars, i);
 	}

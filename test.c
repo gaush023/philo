@@ -1,36 +1,30 @@
 #include <pthread.h>
+#include <stdlib.h>
 #include <stdio.h>
 
-int				counter = 0;
-
-pthread_mutex_t	mutex = PTHREAD_MUTEX_INITIALIZER;
-
-void	*increment_counter(void *arg)
+int	main(void)
 {
-	int	i;
-	(void)arg;
+	int				i;
+	int				flag;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	meal;
+	pthread_mutex_t	print;
 
 	i = 0;
-	while (i < 10000)
+	flag = 5;
+	forks = malloc(flag * sizeof(pthread_mutex_t));
+	if (!forks)
+		return (printf("Malloc failed\n"));
+	while (i < flag)
 	{
-		pthread_mutex_lock(&mutex);
-		++counter;
-		pthread_mutex_unlock(&mutex);
+		if (pthread_mutex_init(&forks[i], NULL))
+			break ;
 		i++;
 	}
-	return NULL;
-}
-
-int main (void)
-{
-	pthread_t	thread1;
-	pthread_t	thread2;
-
-	pthread_create(&thread1, NULL, increment_counter, NULL);
-	pthread_create(&thread2, NULL, increment_counter, NULL);
-	pthread_join(thread1, NULL);
-	pthread_join(thread2, NULL);
-	printf("Counter: %d\n", counter);
-	pthread_mutex_destroy(&mutex);
-	return (0);
+	if (i != flag)
+		return (printf("Error\n"));
+	if (pthread_mutex_init(&meal, NULL))
+		return (printf("Error2\n"));
+	if (pthread_mutex_init(&print, NULL))
+		return (0);
 }
