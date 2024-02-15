@@ -6,7 +6,7 @@
 /*   By: sagemura <sagemura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 02:11:44 by sagemura          #+#    #+#             */
-/*   Updated: 2024/02/15 20:03:32 by sagemura         ###   ########.fr       */
+/*   Updated: 2024/02/15 20:22:49 by sagemura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,6 @@ static void	ini_ph(t_vars *vars)
 static int	ini_mu(t_vars *vars)
 {
 	vars->mutex_i = 0;
-	vars->forks = malloc(sizeof(pthread_mutex_t) * vars->philo_num);
-	if (!vars->forks)
-		return (ft_close(vars, malloc_error2));
 	while (vars->mutex_i < vars->philo_num)
 	{
 		if (pthread_mutex_init(&(vars->forks[vars->mutex_i]), NULL))
