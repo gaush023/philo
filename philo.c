@@ -6,7 +6,7 @@
 /*   By: sagemura <sagemura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 02:11:44 by sagemura          #+#    #+#             */
-/*   Updated: 2024/02/15 19:24:17 by sagemura         ###   ########.fr       */
+/*   Updated: 2024/02/15 20:50:40 by sagemura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	main(int ac, char **av)
 
 	vars.flag = 0;
 	vars.max_mealstimes = 0;
-	if (ac == 5 )
+	if (ac == 5  || ac == 6)
 		return (philo(ac, av));
 	else
 		return (ft_close(NULL, arg_error));

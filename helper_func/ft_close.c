@@ -6,7 +6,7 @@
 /*   By: sagemura <sagemura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 03:09:38 by sagemura          #+#    #+#             */
-/*   Updated: 2024/02/15 20:26:42 by sagemura         ###   ########.fr       */
+/*   Updated: 2024/02/15 20:44:20 by sagemura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_close(t_vars *vars, enum e_error i)
 	}
 	else if (i == thread_error)
 	{
-		write(2, "Error: thread failed", 21);
+		write(2, "Error: thread failed\n", 21);
 		delete_malloc(vars, i);
 		byebye_mutex(vars, i);
 	}
