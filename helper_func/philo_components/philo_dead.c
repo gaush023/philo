@@ -6,7 +6,7 @@
 /*   By: sagemura <sagemura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 14:44:14 by sagemura          #+#    #+#             */
-/*   Updated: 2024/02/15 18:09:04 by sagemura         ###   ########.fr       */
+/*   Updated: 2024/02/17 13:05:21 by sagemura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,26 @@ void	philo_dead(t_vars *vars, t_philo_vars *philo_vars)
 {
 	int	i;
 
-	while (!vars->max_mealstimes)
+	i = 0;
+	while (vars->max_mealstimes != 1)
 	{
-		while (i < vars->philo_num && !vars->flag)
+		while (i < vars->philo_num && vars->flag != 1)
 		{
 			pthread_mutex_lock(&(vars->meal));
-			if ((int )(get_time() - philo_vars[i].last_diet) >= vars->time2die)
+			if ((int)(get_time() - philo_vars[i].last_diet) >= vars->time2die)
 			{
-				vars->flag = 1;
 				print_behavior("died", &philo_vars[i], LOCK);
+				vars->flag = 1;
 			}
 			pthread_mutex_unlock(&(vars->meal));
+			i++;
 		}
 		if (vars->flag)
 			break ;
 		i = 0;
-		while (vars->must2eat && i < vars->philo_num
+		while (vars->must2eat != -1 && i < vars->philo_num
 			&& philo_vars[i].diet_times >= vars->must2eat)
 			i++;
-		if (i == vars->philo_num)
-			vars->max_mealstimes = 1;
+		vars->max_mealstimes = (i == vars->philo_num);
 	}
 }

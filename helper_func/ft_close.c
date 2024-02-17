@@ -6,7 +6,7 @@
 /*   By: sagemura <sagemura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 03:09:38 by sagemura          #+#    #+#             */
-/*   Updated: 2024/02/15 20:44:20 by sagemura         ###   ########.fr       */
+/*   Updated: 2024/02/17 10:51:26 by sagemura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	ft_close(t_vars *vars, enum e_error i)
 		byebye_mutex(vars, i);
 	}
 	else if (i == close_success)
-		write(1, "Success\n", 8);
+		return (0);
 	return (-1);
 }
 

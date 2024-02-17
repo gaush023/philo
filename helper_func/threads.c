@@ -6,7 +6,7 @@
 /*   By: sagemura <sagemura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 05:30:34 by sagemura          #+#    #+#             */
-/*   Updated: 2024/02/15 20:49:40 by sagemura         ###   ########.fr       */
+/*   Updated: 2024/02/17 11:39:43 by sagemura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,10 @@ int	start_threads(t_vars *vars)
 	while (i < vars->philo_num)
 	{
 		vars->philo_vars[i].last_diet = get_time();
-		pthread_create(&(vars->philo_vars[i].id), NULL, routine,
-				&(vars->philo_vars[i]));
-			// return (ft_close(vars, thread_error));
+		if (pthread_create(&(vars->philo_vars[i].id), NULL, routine,
+				&(vars->philo_vars[i])))
+			return (ft_close(vars, thread_error));
+		i++;
 	}
 	philo_dead(vars, vars->philo_vars);
 	pthread_mutex_unlock(&(vars->print));

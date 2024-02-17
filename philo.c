@@ -6,11 +6,16 @@
 /*   By: sagemura <sagemura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 02:11:44 by sagemura          #+#    #+#             */
-/*   Updated: 2024/02/15 20:50:40 by sagemura         ###   ########.fr       */
+/*   Updated: 2024/02/17 11:44:14 by sagemura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+// __attribute__((destructor))
+// static void destructor() {
+//     system("leaks -q philo");
+// }
 
 static int	philo_set_vars(int ac, char **av)
 {
@@ -24,7 +29,7 @@ static int	philo_set_vars(int ac, char **av)
 		vars.must2eat = ft_atoi(av[5]);
 	else
 		vars.must2eat = -1;
-	if (vars.philo_num < 2 || vars.time2die < 0 || vars.time2eat < 0
+	if (vars.philo_num < 1 || vars.time2die < 0 || vars.time2eat < 0
 		|| vars.time2sleep < 0)
 		return (-1);
 	else

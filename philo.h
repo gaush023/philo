@@ -6,12 +6,12 @@
 /*   By: sagemura <sagemura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 02:11:24 by sagemura          #+#    #+#             */
-/*   Updated: 2024/02/15 18:16:08 by sagemura         ###   ########.fr       */
+/*   Updated: 2024/02/17 13:09:47 by sagemura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H_
-# define PHILO_H_
+#ifndef PHILO_H
+# define PHILO_H
 
 # include <limits.h>
 # include <pthread.h>
