@@ -6,16 +6,11 @@
 /*   By: sagemura <sagemura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 02:11:44 by sagemura          #+#    #+#             */
-/*   Updated: 2024/02/17 13:40:44 by sagemura         ###   ########.fr       */
+/*   Updated: 2024/02/17 17:20:02 by sagemura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-__attribute__((destructor))
-static void destructor() {
-    system("leaks -q philo");
-}
 
 static int	philo_set_vars(int ac, char **av)
 {
@@ -36,7 +31,7 @@ static int	philo_set_vars(int ac, char **av)
 		return (philo_allocation(&vars));
 }
 
-int	philo(int ac, char **av)
+static int	philo(int ac, char **av)
 {
 	int	i;
 
@@ -58,7 +53,7 @@ int	main(int ac, char **av)
 
 	vars.flag = 0;
 	vars.max_mealstimes = 0;
-	if (ac == 5  || ac == 6)
+	if (ac == 5 || ac == 6)
 		return (philo(ac, av));
 	else
 		return (ft_close(NULL, arg_error));

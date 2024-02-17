@@ -6,7 +6,7 @@
 /*   By: sagemura <sagemura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 05:30:34 by sagemura          #+#    #+#             */
-/*   Updated: 2024/02/15 17:59:55 by sagemura         ###   ########.fr       */
+/*   Updated: 2024/02/17 17:20:54 by sagemura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,3 @@ void	oyasumi(unsigned long time, t_vars *vars)
 		usleep(vars->philo_num);
 	}
 }
-
