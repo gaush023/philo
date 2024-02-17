@@ -6,7 +6,7 @@
 /*   By: sagemura <sagemura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 03:09:38 by sagemura          #+#    #+#             */
-/*   Updated: 2024/02/17 10:51:26 by sagemura         ###   ########.fr       */
+/*   Updated: 2024/02/17 13:55:13 by sagemura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,17 @@ void	byebye_mutex(t_vars *vars, enum e_error i)
 
 void	delete_malloc(t_vars *vars, enum e_error i)
 {
-	if (i < malloc_error2)
+	if (malloc_error2 == i )
 		free(vars->forks);
 	free(vars->philo_vars);
+	if (i == close_success)
+		free(vars->forks);
 }
 
 int	ft_close(t_vars *vars, enum e_error i)
 {
 	if (i == arg_error)
-		write(2, "Error: wrong argument1\n", 22);
+		write(2, "Error: wrong argument1\n", 23);
 	else if (i == malloc_error)
 		write(2, "Error: malloc failed2\n", 21);
 	else if (i == malloc_error2)
@@ -56,7 +58,11 @@ int	ft_close(t_vars *vars, enum e_error i)
 		byebye_mutex(vars, i);
 	}
 	else if (i == close_success)
+	{
+		delete_malloc(vars, i);
+		byebye_mutex(vars, i);
 		return (0);
+	}
 	return (-1);
 }
 

@@ -6,16 +6,16 @@
 /*   By: sagemura <sagemura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 02:11:44 by sagemura          #+#    #+#             */
-/*   Updated: 2024/02/17 11:44:14 by sagemura         ###   ########.fr       */
+/*   Updated: 2024/02/17 13:40:44 by sagemura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-// __attribute__((destructor))
-// static void destructor() {
-//     system("leaks -q philo");
-// }
+__attribute__((destructor))
+static void destructor() {
+    system("leaks -q philo");
+}
 
 static int	philo_set_vars(int ac, char **av)
 {
