@@ -6,7 +6,7 @@
 /*   By: sagemura <sagemura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 03:09:38 by sagemura          #+#    #+#             */
-/*   Updated: 2024/02/17 13:55:13 by sagemura         ###   ########.fr       */
+/*   Updated: 2024/02/17 14:16:05 by sagemura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ void	byebye_mutex(t_vars *vars, enum e_error i)
 
 void	delete_malloc(t_vars *vars, enum e_error i)
 {
-	if (malloc_error2 == i )
-		free(vars->forks);
 	free(vars->philo_vars);
-	if (i == close_success)
+	if (i < malloc_error2)
 		free(vars->forks);
 }
 
